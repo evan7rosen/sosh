@@ -4,7 +4,7 @@ import "semantic-ui-css/semantic.min.css";
 import { connect } from "react-redux";
 
 const StatusList = props => {
-  let listOfStatuses = props.statuses.map(status => (
+  let listOfStatuses = props.statuses.all.map(status => (
     <Status key={status.id} status={status} />
   ));
   return (

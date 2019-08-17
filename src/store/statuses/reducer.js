@@ -1,20 +1,43 @@
-import {
-  FETCH_STATUS_PENDING,
-  FETCH_STATUS_SUCCESS,
-  FETCH_STATUS_FAILED
-} from "./constants";
+import * as types from "./constants";
 
-let initialState = [];
+const initialState = {
+  all: [],
+  err: {}
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_STATUS_PENDING:
+    case types.FETCH_ALL_STATUSES_PENDING:
+    case types.ADD_STATUS_PENDING:
+    case types.REMOVE_STATUS_PENDING:
       return state;
-    case FETCH_STATUS_SUCCESS:
-      let statusList = action.payload;
-      return [...state, statusList];
-    case FETCH_STATUS_FAILED:
-      return action.payload;
+
+    case types.FETCH_ALL_STATUSES_FAILED:
+    case types.ADD_STATUS_FAILED:
+    case types.REMOVE_STATUS_FAILED:
+      return {
+        ...state,
+        err: action.payload
+      };
+
+    case types.FETCH_ALL_STATUSES_SUCCESS:
+      return {
+        ...state,
+        all: action.payload
+      };
+
+    case types.ADD_STATUS_SUCCESS:
+      return {
+        ...state,
+        all: [action.payload, ...state.all]
+      };
+
+    case types.REMOVE_STATUS_SUCCESS:
+      return {
+        ...state,
+        all: state.all.filter(status => status.id === action.payload.id)
+      };
+
     default:
       return state;
   }

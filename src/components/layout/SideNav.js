@@ -1,43 +1,53 @@
-import React from "react";
-import "semantic-ui-css/semantic.min.css";
+import React, { Component } from "react";
+import { Grid, Menu, Segment } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
-const SideNav = props => {
-  return (
-    <div className="ui vertical menu">
-      <div className="item">
-        <div className="ui input">
-          <input type="text" placeholder="Search..." />
-        </div>
-      </div>
-      <div className="item">
-        Home
-        <div className="menu">
-          <a className="active item">Search</a>
-          <a className="item">Add</a>
-          <a className="item">Remove</a>
-        </div>
-      </div>
-      <a className="item">
-        <i className="grid layout icon" /> Browse
-      </a>
-      <a className="item">Messages</a>
-      <div className="ui dropdown item">
-        More
-        <i className="dropdown icon" />
-        <div className="menu">
-          <a className="item">
-            <i className="edit icon" /> Edit Profile
-          </a>
-          <a className="item">
-            <i className="globe icon" /> Choose Language
-          </a>
-          <a className="item">
-            <i className="settings icon" /> Account Settings
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-};
+export default class SideNav extends Component {
+  state = { activeItem: "Home" };
 
-export default SideNav;
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
+  render() {
+    const { activeItem } = this.state;
+
+    return (
+      <Menu fixed vertical tabular>
+        <Link to="/homepage">
+          <Menu.Item
+            name="Home"
+            active={activeItem === "Home"}
+            onClick={this.handleItemClick}
+          />
+        </Link>
+        <Link to="/profile">
+          <Menu.Item
+            name="Profile"
+            active={activeItem === "Profile"}
+            onClick={this.handleItemClick}
+          />
+        </Link>
+        <Link to="/friends">
+          <Menu.Item
+            name="Friends"
+            active={activeItem === "Friends"}
+            onClick={this.handleItemClick}
+          />
+        </Link>
+        <Link to="/messages">
+          <Menu.Item
+            name="Messages"
+            active={activeItem === "Messages"}
+            onClick={this.handleItemClick}
+          />
+        </Link>
+        <Link to="/settings">
+          <Menu.Item
+            name="Settings"
+            active={activeItem === "Settings"}
+            onClick={this.handleItemClick}
+          />
+        </Link>
+      </Menu>
+    );
+  }
+}

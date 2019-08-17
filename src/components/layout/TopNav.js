@@ -1,21 +1,43 @@
 import React from "react";
-import "semantic-ui-css/semantic.min.css";
+import { Input, Menu, Segment } from "semantic-ui-react";
+import logo from "./logo.png";
 
-const TopNav = props => {
-  return (
-    <div className="ui pointing menu">
-      <a className="active item">Home</a>
-      <a className="item">Messages</a>
-      <a className="item">Friends</a>
-      <div className="right menu">
-        <div className="item">
-          <div className="ui transparent icon input">
-            <input type="text" placeholder="Search..." />
-            <i className="search link icon" />
-          </div>
-        </div>
+class TopNav extends React.Component {
+  state = { activeItem: "home" };
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
+  render() {
+    const { activeItem } = this.state;
+
+    return (
+      <div>
+        <Menu pointing>
+          <img src={logo} style={{ height: "60px" }} />
+          <Menu.Item
+            name="home"
+            active={activeItem === "home"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name="messages"
+            active={activeItem === "messages"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name="friends"
+            active={activeItem === "friends"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Menu position="right">
+            <Menu.Item>
+              <Input icon="search" placeholder="Search..." />
+            </Menu.Item>
+          </Menu.Menu>
+        </Menu>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
 export default TopNav;

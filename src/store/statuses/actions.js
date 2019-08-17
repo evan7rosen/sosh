@@ -1,26 +1,75 @@
-import {
-  FETCH_STATUS_PENDING,
-  FETCH_STATUS_SUCCESS,
-  FETCH_STATUS_FAILED
-} from "./constants";
+import * as types from "./constants";
 import axios from "axios";
+import { BASE_URL } from "./constants";
 
-export const fetchStatus = status => dispatch => {
+export const fetchAllStatuses = () => async dispatch => {
   dispatch({
-    type: FETCH_STATUS_PENDING
+    type: types.FETCH_ALL_STATUSES_PENDING
   });
-  axios
-    .get(`http://localhost:8082/api/statuses`)
-    .then(res => {
-      dispatch({
-        type: FETCH_STATUS_SUCCESS,
-        payload: res.data
-      });
-    })
-    .catch(err => {
-      dispatch({
-        type: FETCH_STATUS_FAILED,
-        payload: err
-      });
+  try {
+    let response = await axios.get(BASE_URL);
+    dispatch({
+      type: types.FETCH_ALL_STATUSES_SUCCESS,
+      payload: response.data
     });
+  } catch (err) {
+    dispatch({
+      type: types.FETCH_ALL_STATUSES_FAILED,
+      payload: err
+    });
+  }
+};
+
+export const fetchOneStatus = id => async dispatch => {
+  dispatch({
+    type: types.FETCH_ONE_STATUS_PENDING
+  });
+  try {
+    let response = await axios.get(BASE_URL + `/${id}`);
+    dispatch({
+      type: types.FETCH_ONE_STATUS_SUCCESS,
+      payload: response.data
+    });
+  } catch (err) {
+    dispatch({
+      type: types.FETCH_ONE_STATUS_FAILED,
+      payload: err
+    });
+  }
+};
+
+export const addStatus = newStatus => async dispatch => {
+  dispatch({
+    type: types.ADD_STATUS_PENDING
+  });
+  try {
+    let response = await axios.post(BASE_URL, newStatus);
+    dispatch({
+      type: types.ADD_STATUS_SUCCESS,
+      payload: response.data
+    });
+  } catch (err) {
+    dispatch({
+      type: types.ADD_STATUS_FAILED,
+      payload: err
+    });
+  }
+};
+
+export const removeStatus = id => async dispatch => {
+  dispatch({
+    type: types.REMOVE_STATUS_PENDING
+  });
+  try {
+    let response = await axios.delete(BASE_URL + `/${id}`);
+    dispatch({
+      type: types.REMOVE_STATUS_SUCCESS,
+      payload: response.data
+    });
+  } catch (err) {
+    dispatch({
+      type: types.REMOVE_STATUS_FAILED,
+      payload: err
+    });
+  }
 };
