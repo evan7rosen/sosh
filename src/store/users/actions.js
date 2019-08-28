@@ -80,13 +80,14 @@ export const userLogin = (creds, history) => dispatch => {
     type: types.USER_LOGIN_PENDING
   });
   axios
-    .post("http://localhost:8082/api/login", creds)
+    .post("http://localhost:8082/api/users", creds)
     .then(res => {
       dispatch({
         type: types.USER_LOGIN_SUCCESS,
         payload: res.data
       });
-      history.push("/homepage");
+
+      history.push(`/homepage/16`);
     })
     .catch(err => {
       dispatch({

@@ -3,7 +3,17 @@ import * as types from "./constants";
 const initialState = {
   all: [],
   err: {},
-  loggedInUser: {}
+  loggedInUser: {
+    name: "Darcy Booker",
+    company: "Manglo",
+    email: "darcybooker@manglo.com",
+    phone: "+1 (903) 561-2872",
+    address: "205 Pioneer Street, Highland, New Mexico, 78918",
+    photo_url: "http://placehold.it/32x32",
+    password: "hello",
+    id: 16
+  },
+  loggedIn: false
 };
 
 export default (state = initialState, action) => {
@@ -44,7 +54,8 @@ export default (state = initialState, action) => {
     case types.USER_LOGIN_SUCCESS:
       return {
         ...state,
-        loggedInUser: action.payload
+        loggedInUser: action.payload,
+        loggedIn: true
       };
 
     default:

@@ -1,15 +1,15 @@
 import React from "react";
+import { Container, Divider } from "semantic-ui-react";
 import NewStatusForm from "./NewStatusForm";
 import StatusList from "./StatusList";
-import "semantic-ui-css/semantic.min.css";
 
 const Dashboard = () => {
   return (
-    <div class="ui segment padded">
+    <Container style={{ marginTop: "25px" }}>
       <NewStatusForm />
-      <div class="divider" />
+      <Divider />
       <StatusList />
-    </div>
+    </Container>
   );
 };
 

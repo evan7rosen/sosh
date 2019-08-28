@@ -1,6 +1,6 @@
 import React from "react";
-import Status from "./Status";
-import "semantic-ui-css/semantic.min.css";
+import Status from "../reusable/Status";
+import { Comment, Header } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 const StatusList = props => {
@@ -8,17 +8,17 @@ const StatusList = props => {
     <Status key={status.id} status={status} />
   ));
   return (
-    <div className="ui list">
-      <div className="ui comments">
-        <h3 className="ui dividing header">News Feed</h3>
-        <div className="item">{listOfStatuses}</div>
-      </div>
-    </div>
+    <Comment.Group threaded>
+      <Header as="h3" dividing>
+        News Feed
+      </Header>
+      {listOfStatuses}
+    </Comment.Group>
   );
 };
 
 const mapStateToProps = state => {
-  return { statuses: state.statuses };
+  return { statuses: state.statuses, users: state.users };
 };
 
 export default connect(mapStateToProps)(StatusList);

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Grid, Menu, Segment } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default class SideNav extends Component {
+class SideNav extends Component {
   state = { activeItem: "Home" };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -12,35 +13,35 @@ export default class SideNav extends Component {
 
     return (
       <Menu fixed vertical tabular>
-        <Link to="/homepage">
+        <Link to={`/homepage/16`}>
           <Menu.Item
             name="Home"
             active={activeItem === "Home"}
             onClick={this.handleItemClick}
           />
         </Link>
-        <Link to="/profile">
+        <Link to={`/profile/16`}>
           <Menu.Item
             name="Profile"
             active={activeItem === "Profile"}
             onClick={this.handleItemClick}
           />
         </Link>
-        <Link to="/friends">
+        <Link to={`/friends/16`}>
           <Menu.Item
             name="Friends"
             active={activeItem === "Friends"}
             onClick={this.handleItemClick}
           />
         </Link>
-        <Link to="/messages">
+        <Link to={`/messages/16`}>
           <Menu.Item
             name="Messages"
             active={activeItem === "Messages"}
             onClick={this.handleItemClick}
           />
         </Link>
-        <Link to="/settings">
+        <Link to={`/settings/16`}>
           <Menu.Item
             name="Settings"
             active={activeItem === "Settings"}
@@ -51,3 +52,11 @@ export default class SideNav extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    users: state.users
+  };
+};
+
+export default connect(mapStateToProps)(SideNav);

@@ -14,4 +14,4 @@ export const REMOVE_STATUS_PENDING = "REMOVE_STATUS_PENDING";
 export const REMOVE_STATUS_SUCCESS = "REMOVE_STATUS_SUCCESS";
 export const REMOVE_STATUS_FAILED = "REMOVE_STATUS_FAILED";
 
-export const BASE_URL = `http://localhost:8082/api/statuses`;
+export const BASE_URL = `http://localhost:8082/api/sosh/statuses`;

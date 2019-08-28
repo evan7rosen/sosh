@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { userLogin } from "../../store/users/actions";
+import Logo from "../layout/logo.png";
 
 class Login extends React.Component {
   state = {
@@ -24,10 +25,10 @@ class Login extends React.Component {
     return (
       <div className="ui middle aligned center aligned grid">
         <div className="column" style={{ maxWidth: "450px" }}>
-          <h2 className="ui teal image header">
-            <img src="assets/images/logo.png" className="image" />
+          <h1 className="ui teal image header">
+            <img src={Logo} className="image" alt="logo" />
             <div className="content">Log-in to your account</div>
-          </h2>
+          </h1>
           <form className="ui large form" onSubmit={this.handleSubmit}>
             <div className="ui stacked segment">
               <div className="field">
