@@ -44,6 +44,8 @@ export const addStatus = newStatus => async dispatch => {
   });
   try {
     let response = await axios.post(BASE_URL, newStatus);
+    console.log("newStatus", newStatus);
+    console.log("response", response.data);
     dispatch({
       type: types.ADD_STATUS_SUCCESS,
       payload: response.data

@@ -14,10 +14,9 @@ class NewStatusForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state.status);
     this.props.addStatus({
-      content: this.state.status,
-      userId: 16
+      user_id: 16,
+      content: this.state.status
     });
     this.setState({ status: "" });
   };
@@ -29,7 +28,7 @@ class NewStatusForm extends React.Component {
           label="Create Post"
           placeholder="Update your status"
           onChange={this.handleChange}
-          value={this.state.st}
+          value={this.state.status}
         />
         <Button type="submit">Submit</Button>
       </Form>

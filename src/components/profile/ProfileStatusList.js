@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 const ProfileStatusList = props => {
   let listOfStatuses = props.statuses.all
-    .filter(status => status.userId == props.user.id)
+    .filter(status => status.user_id == props.user.id)
     .map(status => <Status key={status.id} status={status} />);
 
   return (

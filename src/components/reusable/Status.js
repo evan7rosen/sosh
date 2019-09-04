@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 import CommentList from "../reusable/comments/CommentList";
 
 const Status = props => {
-  let user = props.users.all.filter(user => user.id === props.status.userId)[0];
+  let user = props.users.all.filter(
+    user => user.id === props.status.user_id
+  )[0];
   if (user) {
     return (
       <Comment key={props.key}>

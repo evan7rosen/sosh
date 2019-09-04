@@ -4,13 +4,9 @@ import { Comment } from "semantic-ui-react";
 import OneComment from "./OneComment";
 
 const CommentList = props => {
-  console.log("comment list props", props);
-
   let listOfComments = props.comments.map(comment => (
     <OneComment key={comment.id} comment={comment} />
   ));
-
-  console.log("list of comments", listOfComments);
 
   return <Comment style={{ marginLeft: "20px" }}>{listOfComments}</Comment>;
 };
