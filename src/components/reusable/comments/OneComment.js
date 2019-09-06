@@ -1,6 +1,7 @@
 import React from "react";
 import { Comment } from "semantic-ui-react";
 import { connect } from "react-redux";
+import faker from "faker";
 
 class OneComment extends React.Component {
   state = {
@@ -14,6 +15,7 @@ class OneComment extends React.Component {
   render() {
     return (
       <Comment>
+        <Comment.Avatar src={faker.image.avatar()} />
         <Comment.Content>
           <Comment.Author as="a">{this.props.user.name}</Comment.Author>
           <Comment.Text>{this.props.comment.content}</Comment.Text>

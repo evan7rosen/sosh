@@ -1,12 +1,16 @@
 import React from "react";
-import { Input, Menu } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import logo from "./logo.png";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { userLogOut } from "../../store/users/actions";
 
 class TopNav extends React.Component {
   state = { activeItem: "home" };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = e => {
+    console.log("topnav history", this.props.history);
+    return this.props.userLogOut(this.props.history);
+  };
 
   render() {
     const { activeItem } = this.state;
@@ -28,4 +32,15 @@ class TopNav extends React.Component {
   }
 }
 
-export default TopNav;
+const mapStateToProps = state => {
+  return {
+    users: state.users
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    userLogOut
+  }
+)(TopNav);

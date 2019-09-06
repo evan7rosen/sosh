@@ -22,12 +22,14 @@ export default (state = initialState, action) => {
     case types.ADD_USER_PENDING:
     case types.REMOVE_USER_PENDING:
     case types.USER_LOGIN_PENDING:
+    case types.USER_LOGOUT_PENDING:
       return state;
 
     case types.FETCH_ALL_USERS_FAILED:
     case types.ADD_USER_FAILED:
     case types.REMOVE_USER_FAILED:
     case types.USER_LOGIN_FAILED:
+    case types.USER_LOGOUT_PENDING:
       return {
         ...state,
         err: action.payload
@@ -56,6 +58,12 @@ export default (state = initialState, action) => {
         ...state,
         loggedInUser: action.payload,
         loggedIn: true
+      };
+
+    case types.USER_LOGOUT_SUCCESS:
+      return {
+        ...state,
+        loggedIn: false
       };
 
     default:

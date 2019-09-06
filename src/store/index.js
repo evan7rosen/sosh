@@ -4,12 +4,14 @@ import statusesReducer from "./statuses/reducer";
 import thunk from "redux-thunk";
 import commentsReducer from "./comments/reducer";
 import friendsReducer from "./friends/reducer";
+import messagesReducer from "./messages/reducer";
 
 const rootReducer = combineReducers({
   users: userReducer,
   statuses: statusesReducer,
   comments: commentsReducer,
-  friends: friendsReducer
+  friends: friendsReducer,
+  messages: messagesReducer
 });
 
 const middleware = [thunk];

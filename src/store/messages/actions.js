@@ -37,3 +37,20 @@ export const sendMessage = newMessage => async dispatch => {
     });
   }
 };
+
+export const selectMessage = user => dispatch => {
+  dispatch({
+    type: types.SELECT_MESSAGE_PENDING
+  });
+  try {
+    dispatch({
+      type: types.SELECT_MESSAGE_SUCCESS,
+      payload: user
+    });
+  } catch (err) {
+    dispatch({
+      type: types.SELECT_MESSAGE_FAILED,
+      payload: err
+    });
+  }
+};

@@ -8,7 +8,7 @@ const CommentList = props => {
     <OneComment key={comment.id} comment={comment} />
   ));
 
-  return <Comment style={{ marginLeft: "20px" }}>{listOfComments}</Comment>;
+  return <Comment>{listOfComments}</Comment>;
 };
 
 const mapStateToProps = (state, props) => ({

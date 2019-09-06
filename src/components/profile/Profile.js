@@ -6,7 +6,6 @@ import ProfileStatusList from "./ProfileStatusList";
 import AddFriend from "./AddFriend";
 
 const Profile = props => {
-  console.log(props);
   const user = props.users.all[0]
     ? props.users.all.filter(user => user.id == props.match.params.id)[0]
     : [];

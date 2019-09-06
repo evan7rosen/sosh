@@ -96,3 +96,21 @@ export const userLogin = (creds, history) => dispatch => {
       });
     });
 };
+
+export const userLogOut = history => dispatch => {
+  dispatch({
+    type: types.USER_LOGOUT_PENDING
+  });
+  try {
+    dispatch({
+      type: types.USER_LOGOUT_SUCCESS,
+      payload: history
+    });
+    history.push(`/`);
+  } catch (err) {
+    dispatch({
+      type: types.USER_LOGOUT_FAILED,
+      payload: err
+    });
+  }
+};

@@ -18,4 +18,8 @@ export const USER_LOGIN_PENDING = "USER_LOGIN_PENDING";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_FAILED = "USER_LOGIN_FAILED";
 
+export const USER_LOGOUT_PENDING = "USER_LOGOUT_PENDING";
+export const USER_LOGOUT_SUCCESS = "USER_LOGOUT_SUCCESS";
+export const USER_LOGOUT_FAILED = "USER_LOGOUT_FAILED";
+
 export const BASE_URL = "http://localhost:8082/api/users";
