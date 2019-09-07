@@ -48,6 +48,8 @@ export const addFriend = newFriend => async dispatch => {
       type: types.ADD_FRIEND_SUCCESS,
       payload: response.data
     });
+    console.log("new friend", newFriend);
+    console.log("friend req response", response.data);
   } catch (err) {
     dispatch({
       type: types.ADD_FRIEND_FAILED,

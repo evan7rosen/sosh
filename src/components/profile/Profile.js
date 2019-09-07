@@ -10,20 +10,25 @@ const Profile = props => {
     ? props.users.all.filter(user => user.id == props.match.params.id)[0]
     : [];
 
-  const isFriend = props.friends.all.filter(
+  const userFriends = props.friends.all.filter(
     friend =>
-      (friend.accepted === true &&
-        (friend.requestorId === user.id &&
-          friend.requesteeId === props.users.loggedInUser.id)) ||
-      (friend.requesteeId === user.id &&
-        friend.requestorId === props.users.loggedInUser.id)
+      friend.accepted === true &&
+      (friend.requestorId === 16 || friend.requesteeId === 16)
   );
 
-  console.log("isfriend", isFriend);
+  const isFriend =
+    props.match.params.id == 16
+      ? true
+      : userFriends.filter(
+          friend =>
+            friend.requestorId == props.match.params.id ||
+            friend.requesteeId == props.match.params.id
+        ).length === 1;
 
+  console.log("is friend", isFriend);
   return (
     <Container style={{ marginTop: "20px", marginLeft: "20px" }}>
-      <Item.Group>{isFriend === 0 ? <AddFriend user={user} /> : ""}</Item.Group>
+      <Item.Group>{!isFriend ? <AddFriend user={user} /> : ""}</Item.Group>
       <Header as="h1" dividing>
         Profile
       </Header>
