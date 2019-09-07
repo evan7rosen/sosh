@@ -5,7 +5,12 @@ import Logo from "../layout/logo.png";
 
 class Login extends React.Component {
   state = {
+    name: "Darcy Booker",
+    company: "Manglo",
     email: "",
+    phone: "+1 (903) 561-2872",
+    address: "205 Pioneer Street, Highland, New Mexico, 78918",
+    photo_url: "http://placehold.it/32x32",
     password: ""
   };
 

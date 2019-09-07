@@ -27,6 +27,7 @@ const ConversationItem = props => {
               {props.message.created_at}
             </Moment>
           </Item.Description>
+          <Item.Extra>{props.message.body.slice(0, 20)}...</Item.Extra>
         </Item.Content>
       </Item>
     );
