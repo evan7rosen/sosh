@@ -1,13 +1,10 @@
 import React from "react";
 import { Comment } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import faker from "faker";
 
 class OneComment extends React.Component {
-  state = {
-    reply: false
-  };
-
   handleClick = e => {
     this.setState({ reply: true });
   };
@@ -17,11 +14,10 @@ class OneComment extends React.Component {
       <Comment>
         <Comment.Avatar src={faker.image.avatar()} />
         <Comment.Content>
-          <Comment.Author as="a">{this.props.user.name}</Comment.Author>
+          <Link to={`/profile/${this.props.user.id}`}>
+            <Comment.Author as="a">{this.props.user.name}</Comment.Author>
+          </Link>
           <Comment.Text>{this.props.comment.content}</Comment.Text>
-          <Comment.Actions>
-            <Comment.Action onClick={this.handleClick}>Reply</Comment.Action>
-          </Comment.Actions>
         </Comment.Content>
       </Comment>
     );

@@ -13,9 +13,7 @@ const ConversationItem = props => {
   })[0];
 
   const handleClick = e => {
-    console.log("clicked", user);
     props.selectMessage(user);
-    console.log("convItm props", props.messages.selectedMessage);
   };
 
   if (user) {

@@ -5,38 +5,69 @@ import Moment from "react-moment";
 import { Comment } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import CommentList from "../reusable/comments/CommentList";
+import NewCommentForm from "./comments/NewCommentForm";
 
-const Status = props => {
-  let user = props.users.all.filter(
-    user => user.id === props.status.user_id
+class Status extends React.Component {
+  state = {
+    reply: false,
+    viewComments: false
+  };
+
+  user = this.props.users.all.filter(
+    user => user.id === this.props.status.user_id
   )[0];
-  if (user) {
-    return (
-      <Comment key={props.key}>
-        <Comment.Avatar src={faker.image.avatar()} />
-        <Comment.Content>
-          <Link to={`/profile/${user.id}`}>
-            <Comment.Author as="a">{user.name}</Comment.Author>
-          </Link>
-          <Comment.Metadata>
-            <Moment format="MM/DD/YYYY HH:mm A">
-              {props.status.createdAt}
-            </Moment>
-          </Comment.Metadata>
-          <Comment.Text>{props.status.content}</Comment.Text>
-          <Comment.Actions>
-            <Comment.Action>Reply</Comment.Action>
-          </Comment.Actions>
-        </Comment.Content>
-        <Comment.Group>
-          <CommentList status={props.status} />
-        </Comment.Group>
-      </Comment>
-    );
-  } else {
-    return <div>Loading ... </div>;
+
+  handleClickReply = e => {
+    this.setState({ reply: !this.state.reply });
+  };
+
+  handleClickComments = e => {
+    this.setState({ viewComments: !this.state.viewComments });
+  };
+
+  render() {
+    if (this.user) {
+      return (
+        <Comment key={this.props.key}>
+          <Comment.Avatar src={faker.image.avatar()} />
+          <Comment.Content>
+            <Link to={`/profile/${this.user.id}`}>
+              <Comment.Author as="a">{this.user.name}</Comment.Author>
+            </Link>
+            <Comment.Metadata>
+              <Moment format="MM/DD/YYYY HH:mm A">
+                {this.props.status.createdAt}
+              </Moment>
+            </Comment.Metadata>
+            <Comment.Text>{this.props.status.content}</Comment.Text>
+            <Comment.Actions>
+              <Comment.Action onClick={this.handleClickReply}>
+                Reply
+              </Comment.Action>
+              <Comment.Action onClick={this.handleClickComments}>
+                View Comments
+              </Comment.Action>
+            </Comment.Actions>
+          </Comment.Content>
+          <Comment.Group>
+            {this.state.reply ? (
+              <NewCommentForm status={this.props.status} />
+            ) : (
+              ""
+            )}
+            {this.state.viewComments ? (
+              <CommentList status={this.props.status} />
+            ) : (
+              ""
+            )}
+          </Comment.Group>
+        </Comment>
+      );
+    } else {
+      return <div>Loading ... </div>;
+    }
   }
-};
+}
 
 const mapStateToProps = state => {
   return {

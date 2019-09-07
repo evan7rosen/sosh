@@ -15,7 +15,11 @@ const ConversationList = props => {
       <ConversationItem key={message.id} message={message} user={props.user} />
     ));
 
-  return <Item.Group link>{listOfConversations}</Item.Group>;
+  return (
+    <Item.Group divided link>
+      {listOfConversations}
+    </Item.Group>
+  );
 };
 
 const mapStateToProps = state => {

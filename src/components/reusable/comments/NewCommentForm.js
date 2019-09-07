@@ -1,42 +1,37 @@
 import React from "react";
 import { Form, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { addStatus } from "../../store/statuses/actions";
+import { addComment } from "../../../store/comments/actions";
 
-class NewStatusForm extends React.Component {
+class NewCommentForm extends React.Component {
   state = {
-    status: "",
-    submitMsg: ""
+    content: ""
   };
 
   handleChange = e => {
-    this.setState({ status: e.target.value });
+    this.setState({ content: e.target.value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addStatus({
-      user_id: 16,
-      content: this.state.status
+    this.props.addComment({
+      content: this.state.content,
+      status_id: this.props.status.id,
+      user_id: 16
     });
-    this.setState({
-      status: "",
-      submitMsg: "You have successfully added a new status"
-    });
+    this.setState({ content: "" });
   };
 
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.TextArea
-          label="Create Post"
-          placeholder="Update your status"
+          placeholder="Reply to Post"
           onChange={this.handleChange}
-          value={this.state.status}
+          value={this.state.content}
           required
         />
         <Button type="submit">Submit</Button>
-        {this.state.submitMsg}
       </Form>
     );
   }
@@ -45,13 +40,14 @@ class NewStatusForm extends React.Component {
 const mapStateToProps = state => {
   return {
     statuses: state.statuses,
-    users: state.users
+    users: state.users,
+    comments: state.comments
   };
 };
 
 export default connect(
   mapStateToProps,
   {
-    addStatus
+    addComment
   }
-)(NewStatusForm);
+)(NewCommentForm);

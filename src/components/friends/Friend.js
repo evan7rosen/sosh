@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, Button, Image } from "semantic-ui-react";
 import faker from "faker";
 import { connect } from "react-redux";
 
@@ -18,8 +18,12 @@ const Friend = props => {
         <Card.Description>{user.name}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Icon name="user" />
-        22 Friends
+        <Button
+          content="Remove Friend"
+          icon="user times"
+          labelPosition="right"
+          type="Remove Friend"
+        />
       </Card.Content>
     </Card>
   );

@@ -10,9 +10,12 @@ const Message = props => {
   )[0];
 
   return (
-    <Item key={props.key}>
-      <Item.Image size="tiny" src={faker.image.avatar()} />
-
+    <Item key={props.key} style={props.messageStyle}>
+      {props.messageStyle.textAlign === "left" ? (
+        <Item.Image size="tiny" src={faker.image.avatar()} />
+      ) : (
+        ""
+      )}
       <Item.Content>
         <Item.Header as="a">{messageAuthor.name}</Item.Header>
         <Item.Meta>
@@ -22,6 +25,15 @@ const Message = props => {
         </Item.Meta>
         <Item.Description>{props.message.body}</Item.Description>
       </Item.Content>
+      {props.messageStyle.textAlign === "right" ? (
+        <Item.Image
+          size="tiny"
+          src={faker.image.avatar()}
+          style={{ marginLeft: "10px", marginRight: "10px" }}
+        />
+      ) : (
+        ""
+      )}
     </Item>
   );
 };

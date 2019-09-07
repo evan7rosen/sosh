@@ -16,10 +16,10 @@ class NewMessageForm extends React.Component {
     e.preventDefault();
     this.props.sendMessage({
       sender_id: 16,
-      recipient_id: this.props.recipient.sender_id,
-      content: this.state.messageText
+      recipient_id: this.props.recipient.id,
+      body: this.state.messageText
     });
-    this.setState({ status: "" });
+    this.setState({ messageText: "" });
   };
 
   render() {
@@ -30,8 +30,14 @@ class NewMessageForm extends React.Component {
           placeholder="Send message"
           onChange={this.handleChange}
           value={this.state.messageText}
+          required
         />
-        <Button type="submit">Send</Button>
+        <Button
+          content="Send"
+          icon="send"
+          labelPosition="right"
+          type="submit"
+        />
       </Form>
     );
   }
